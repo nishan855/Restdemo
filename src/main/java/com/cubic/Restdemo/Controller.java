@@ -26,9 +26,18 @@ public class Controller {
     //////////////////////////   Filtering Employe  /////////////////////////////////////////////////
 
     @GetMapping("/filterEmployee")   //path maping for get
-    public List getEmployee(@RequestParam("gender") String gender){
+    public List<Employee> getEmployee(@RequestParam("gender") String gender){
 
         //calling service
-        return empService.getEmployeeService(gender);
+        List<Employee> filtered=empService.getEmployeeService(gender);
+
+        //displaying on console
+        System.out.println("Fileterd by gender "+ gender);
+        for(Employee e: filtered){
+            System.out.println(e.toString());
+        }
+
+        //sending response
+        return(filtered);
     }
 }
